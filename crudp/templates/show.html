@@ -1,0 +1,30 @@
+<center>
+{% if employeers %}
+<table border="2" cellspacing="0" cellpadding="10"> 
+    <tr>
+        <td>EID</td>
+        <td>Ename</td>
+        <td>EEmail</td>
+        <td>Econtact</td>
+        <td>EImage</td>
+        <td colspan="2">Action</td>
+    </tr>
+
+    {% for emp in employeers %}
+        <tr>
+            <td>{{emp.eid}}</td>
+            <td>{{emp.ename}}</td>
+            <td>{{emp.eemail}}</td>
+            <td>{{emp.econtact}}</td>
+            <td> <img src="{{emp.eimage.url}}" alt="Employeer Image" height="200" width="200" /> </td>
+            <td><a href="{% url 'app:update' emp.id %}">Edit</a></td>
+            <td><a href="{% url 'app:delete' emp.id %}">Delete</a></td>
+        </tr>
+    {% endfor %}
+</table>
+{% else %}
+    No Employeer Found
+{% endif %}
+<br><br>
+<a href="{% url 'app:index' %}">Add New Employeer</a>
+</center>
